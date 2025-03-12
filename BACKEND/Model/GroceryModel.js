@@ -2,11 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const GrocerySchema = new Schema({
-  userID: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
-    required: true
-  },
+
   name: {
     type: String,
     required: [true, "Grocery item name is required"],
