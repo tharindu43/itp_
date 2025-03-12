@@ -28,7 +28,7 @@ const GrocerySchema = new Schema({
     default: null
   },
   status: {
-    type: String,
+    type: String,  
     enum: ["Available", "Finished"],
     default: "Available"
   },
