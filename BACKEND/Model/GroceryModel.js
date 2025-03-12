@@ -6,7 +6,7 @@ const GrocerySchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
     required: true
-  },
+  }, 
   name: {
     type: String,
     required: [true, "Grocery item name is required"],
