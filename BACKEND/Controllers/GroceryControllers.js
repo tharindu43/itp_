@@ -14,7 +14,7 @@ const getAllGroceries = async (req, res) => {
 // Add new grocery
 const addGrocery = async (req, res) => {
   try {
-    const newGrocery = new Grocery(req.body);
+    const newGrocery = new  Grocery(req.body);
     await newGrocery.save();
     res.status(201).json(newGrocery);
   } catch (err) {
