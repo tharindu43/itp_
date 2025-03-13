@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Button, Alert, Modal, Row, Col } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
-import api from '../services/api';
+import api from '../../services/api';
 import './GroceryForm.css';
 
 const GroceryForm = ({ edit }) => {

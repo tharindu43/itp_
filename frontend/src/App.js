@@ -1,9 +1,9 @@
 import { Container } from 'react-bootstrap';
 import { Routes, Route } from 'react-router-dom';
 import Navigation from './components/Navigation';
-import GroceryList from './components/GroceryList';
-import GroceryForm from './components/GroceryForm';
-import GroceryDetails from './components/GroceryDetails';
+import GroceryList from './components/GroceryList/GroceryList';
+import GroceryForm from './components/GroceryForm/GroceryForm';
+import GroceryDetails from './components/GroceryDetails/GroceryDetails';
 
 function App() {
   return (

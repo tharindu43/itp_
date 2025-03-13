@@ -1,0 +1,219 @@
+/* Container */
+.grocery-list-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+  }
+  
+  /* Header */
+  .grocery-list-container h2 {
+    color: #283b5b;
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin: 0;
+  }
+  
+  /* Add New Button */
+  .add-new-btn {
+    background: #34c759;
+    color: white;
+    padding: 0.8rem 1.8rem;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .add-new-btn:hover {
+    background: #2aa44f;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(52, 199, 89, 0.2);
+  }
+  
+  /* Filter Controls */
+  .filter-controls {
+    margin-bottom: 2rem;
+  }
+  
+  .search-input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #e8eef4;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+  
+  .search-input:focus {
+    border-color: #4a90e2;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+  }
+  
+  .filter-dropdowns {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .dropdown-btn {
+    background: white;
+    border: 1px solid #e8eef4;
+    padding: 0.8rem 1.2rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .dropdown-btn:hover {
+    background: #f9fbfd;
+    border-color: #cbd5e1;
+  }
+  
+  .dropdown-menu {
+    background: white;
+    border: 1px solid #e8eef4;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem 0;
+    margin-top: 0.5rem;
+  }
+  
+  .dropdown-item {
+    padding: 0.5rem 1rem;
+    color: #283b5b;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .dropdown-item:hover {
+    background: #f9fbfd;
+    color: #4a90e2;
+  }
+  
+  /* Table */
+  .grocery-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .grocery-table thead {
+    background: #283b5b;
+    color: white;
+  }
+  
+  .grocery-table th {
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: left;
+  }
+  
+  .grocery-table td {
+    padding: 1rem;
+    font-size: 0.95rem;
+    border-bottom: 1px solid #e8eef4;
+  }
+  
+  .grocery-table tbody tr:hover {
+    background: #f9fbfd;
+  }
+  
+  /* Badges */
+  .badge {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  
+  .badge-secondary {
+    background: #6b7c93;
+    color: white;
+  }
+  
+  .badge-success {
+    background: #34c759;
+    color: white;
+  }
+  
+  .badge-danger {
+    background: #ff3b30;
+    color: white;
+  }
+  
+  /* Action Buttons */
+  .action-btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .action-btn.view-btn {
+    background: #4a90e2;
+    color: white;
+  }
+  
+  .action-btn.edit-btn {
+    background: #ffc107;
+    color: white;
+  }
+  
+  .action-btn.delete-btn {
+    background: #ff3b30;
+    color: white;
+  }
+  
+  .action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* No Results Message */
+  .no-results {
+    text-align: center;
+    color: #6b7c93;
+    margin: 2rem 0;
+    font-size: 1.1rem;
+  }
+  
+  /* Loading Spinner */
+  .loading-spinner {
+    text-align: center;
+    margin: 2rem 0;
+    color: #4a90e2;
+    font-size: 1.2rem;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .grocery-list-container {
+      padding: 0 1rem;
+    }
+  
+    .filter-dropdowns {
+      flex-direction: column;
+    }
+  
+    .grocery-table th,
+    .grocery-table td {
+      padding: 0.8rem;
+    }
+  
+    .action-btn {
+      margin: 0.2rem 0;
+      width: 100%;
+    }
+  }

@@ -3,9 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { Table, Button, Badge, Form, InputGroup, Dropdown, Spinner } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { saveAs } from 'file-saver';
-import api from '../services/api';
+import api from '../../services/api';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
+import './GroceryList.css';
 
 const GroceryList = () => {
   const [groceries, setGroceries] = useState([]);
