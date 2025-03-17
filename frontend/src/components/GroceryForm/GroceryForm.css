@@ -1,121 +1,74 @@
-/* Modern Glassmorphic Styling for Grocery Form */
-body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #141e30, #243b55);
+.grocery-list-container {
+    padding: 20px;
+  }
+  
+  .d-flex {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    height: 100vh;
-    margin: 0;
-    overflow: hidden;
-}
-
-/* Floating Animated Background Elements */
-.background-blur {
-    position: absolute;
-    width: 200px;
-    height: 200px;
-    background: rgba(255, 255, 255, 0.1);
-    filter: blur(100px);
-    animation: float 6s infinite alternate ease-in-out;
-}
-
-.bg-1 { top: 10%; left: 15%; }
-.bg-2 { bottom: 10%; right: 15%; }
-
-@keyframes float {
-    0% { transform: translateY(-20px); }
-    100% { transform: translateY(20px); }
-}
-
-/* Form Container */
-.grocery-form-container {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
-    border-radius: 16px;
-    padding: 30px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    width: 90%;
-    max-width: 420px;
-    text-align: center;
-    position: relative;
-    z-index: 2;
-    animation: fadeIn 0.8s ease-in-out;
-}
-
-/* Heading */
-.grocery-form-container h2 {
-    color: #fff;
-    font-size: 26px;
+  }
+  
+  .mb-4 {
     margin-bottom: 20px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: bold;
-}
-
-/* Input Fields */
-.input-group {
+  }
+  
+  .filter-controls {
     display: flex;
-    flex-direction: column;
-    gap: 15px;
+    justify-content: space-between;
     margin-bottom: 20px;
-}
-
-input, select {
+  }
+  
+  .input-group {
     width: 100%;
-    padding: 14px;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    transition: all 0.3s ease-in-out;
-    background: rgba(255, 255, 255, 0.2);
-    color: #fff;
-    outline: none;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-}
-
-input::placeholder {
-    color: rgba(255, 255, 255, 0.6);
-}
-
-input:focus, select:focus {
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
-}
-
-/* Submit Button */
-button {
-    background: linear-gradient(135deg, #ff416c, #ff4b2b);
+  }
+  
+  .table-dark {
+    background-color: #34495e;
     color: white;
-    border: none;
-    padding: 14px;
-    width: 100%;
-    border-radius: 8px;
-    font-size: 18px;
+  }
+  
+  .table-striped tbody tr:nth-of-type(odd) {
+    background-color: #ecf0f1;
+  }
+  
+  .badge-secondary {
+    background-color: #95a5a6;
+  }
+  
+  .badge-success {
+    background-color: #2ecc71;
+  }
+  
+  .badge-danger {
+    background-color: #e74c3c;
+  }
+  
+  button {
+    border-radius: 5px;
+    padding: 8px 15px;
     cursor: pointer;
-    transition: transform 0.3s ease, background 0.3s ease;
-    font-weight: bold;
-}
-
-button:hover {
-    background: linear-gradient(135deg, #e63950, #ff5733);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(255, 92, 92, 0.4);
-}
-
-/* Floating Form Animation */
-@keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.9); }
-    to { opacity: 1; transform: scale(1); }
-}
-
-/* Responsive Design */
-@media (max-width: 480px) {
-    .grocery-form-container {
-        width: 95%;
-        padding: 20px;
-    }
-
-    button {
-        font-size: 16px;
-    }
-}
+  }
+  
+  button:hover {
+    opacity: 0.8;
+  }
+  
+  button:focus {
+    outline: none;
+  }
+  
+  button.primary {
+    background-color: #3498db;
+    color: white;
+  }
+  
+  button.success {
+    background-color: #2ecc71;
+    color: white;
+  }
+  
+  button.danger {
+    background-color: #e74c3c;
+    color: white;
+  }
+  

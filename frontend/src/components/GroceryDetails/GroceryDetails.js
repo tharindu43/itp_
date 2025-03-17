@@ -5,6 +5,7 @@ import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import './GroceryDetails.css';
 
+
 const GroceryDetails = () => {
   const [grocery, setGrocery] = useState(null);
   const [error, setError] = useState('');
