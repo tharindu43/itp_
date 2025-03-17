@@ -1,56 +1,219 @@
+/* General Styles */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f0f2f5;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f7fc;
     margin: 0;
     padding: 0;
   }
   
-  .container {
+  .grocery-list-container {
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 20px auto;
     padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
   }
   
-  h1, h2 {
-    font-size: 28px;
-    font-weight: bold;
-    color: #2c3e50;
+  /* Header Section */
+  .grocery-list-container h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #333;
+    text-transform: capitalize;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
   }
   
-  .error-message {
-    color: red;
-    text-align: center;
-    font-size: 18px;
-    margin-top: 20px;
-  }
-  
-  .loading-spinner {
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  input[type="text"], input[type="email"], input[type="number"] {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    width: 100%;
-  }
-  
-  input[type="text"]:focus, input[type="email"]:focus, input[type="number"]:focus {
-    outline: none;
-    border-color: #3498db;
-  }
-  
+  /* Button Styles */
   button {
-    padding: 10px 20px;
-    background-color: #3498db;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    border-radius: 20px;
+    transition: all 0.3s ease;
   }
   
   button:hover {
-    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+  }
+  
+  button:focus {
+    outline: none;
+  }
+  
+  /* Table Styles */
+  .table {
+    border-collapse: collapse;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .table th, .table td {
+    padding: 12px;
+    text-align: left;
+    font-size: 1rem;
+    color: #333;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .table th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .table tbody tr:hover {
+    background-color: #f1f5f8;
+  }
+  
+  .table-striped tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+  }
+  
+  .table-striped tbody tr:nth-child(even) {
+    background-color: #fff;
+  }
+  
+  .table-bordered {
+    border: 1px solid #ddd;
+  }
+  
+  .table td, .table th {
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .table .badge {
+    font-size: 0.9rem;
+    padding: 5px 10px;
+    border-radius: 12px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .table .badge.success {
+    background-color: #28a745;
+  }
+  
+  .table .badge.danger {
+    background-color: #dc3545;
+  }
+  
+  .table .badge.secondary {
+    background-color: #6c757d;
+  }
+  
+  /* Filter Controls Section */
+  .filter-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .filter-controls .input-group {
+    max-width: 400px;
+  }
+  
+  .filter-controls .d-flex {
+    gap: 10px;
+  }
+  
+  /* Dropdown Styles */
+  .dropdown-toggle {
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-size: 1rem;
+  }
+  
+  .dropdown-item {
+    padding: 8px 20px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #f1f5f8;
+  }
+  
+  /* Spinner Animation */
+  .spinner-border {
+    border-top-color: #007bff;
+    animation: spin 1.5s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  /* Action Buttons */
+  .action-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .action-buttons button {
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+  }
+  
+  .action-buttons button.view {
+    background-color: #17a2b8;
+    color: white;
+  }
+  
+  .action-buttons button.edit {
+    background-color: #ffc107;
+    color: white;
+  }
+  
+  .action-buttons button.delete {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .action-buttons button.view:hover {
+    background-color: #138496;
+  }
+  
+  .action-buttons button.edit:hover {
+    background-color: #e0a800;
+  }
+  
+  .action-buttons button.delete:hover {
+    background-color: #c82333;
+  }
+  
+  /* No Results Message */
+  .text-center.text-muted {
+    font-size: 1.2rem;
+    color: #aaa;
+    margin-top: 30px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .grocery-list-container {
+      padding: 15px;
+    }
+  
+    .filter-controls {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .filter-controls .input-group {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  
+    .filter-controls .d-flex {
+      width: 100%;
+      flex-direction: column;
+    }
+  
+    .table td, .table th {
+      padding: 10px;
+    }
   }
   
