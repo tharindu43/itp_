@@ -70,7 +70,13 @@ const GroceryList = () => {
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
     saveAs(blob, `groceries-report-${new Date().toISOString().slice(0,10)}.csv`);
   };
-
+<br></br>
+/*************  ✨ Codeium Command ⭐  *************/
+  /**
+   * Generates a PDF report of the filtered grocery list
+   * @function
+   */
+/******  2cc7acaa-8dca-458a-856a-2787fd072af2  *******/
   const generatePDFReport = () => {
     const doc = new jsPDF();
     doc.autoTable({
@@ -145,7 +151,7 @@ const GroceryList = () => {
               <Dropdown.Item onClick={() => setSelectedStatus('Out of Stock')}>Out of Stock</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
-
+              
           <Dropdown>
             <Dropdown.Toggle variant="primary">
               Generate Report

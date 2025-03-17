@@ -204,16 +204,107 @@ body {
   
     .filter-controls .input-group {
       width: 100%;
-      margin-bottom: 10px;
     }
   
     .filter-controls .d-flex {
-      width: 100%;
       flex-direction: column;
+      gap: 10px;
+      width: 100%;
     }
   
-    .table td, .table th {
+    .filter-controls .dropdown-toggle {
+      width: 100%;
+    }
+  
+    .filter-controls .dropdown-item {
+      padding: 8px 15px;
+    }
+  
+    .table th, .table td {
+      font-size: 0.9rem;
       padding: 10px;
     }
+  
+    .action-buttons {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .action-buttons button {
+      width: 100%;
+    }
+  }
+  
+  /* Light Theme Styles */
+  body.light-theme {
+    background-color: #f1f1f1;
+  }
+  
+  body.light-theme .grocery-list-container {
+    background-color: #fff;
+  }
+  
+  body.light-theme .table th {
+    background-color: #007bff;
+  }
+  
+  body.light-theme .table .badge.success {
+    background-color: #28a745;
+  }
+  
+  body.light-theme .table .badge.danger {
+    background-color: #dc3545;
+  }
+  
+  body.light-theme .table .badge.secondary {
+    background-color: #6c757d;
+  }
+  
+  body.light-theme .dropdown-toggle {
+    background-color: #f1f1f1;
+    color: #333;
+  }
+  
+  body.light-theme .dropdown-toggle:hover {
+    background-color: #e0e0e0;
+  }
+  
+  /* Dark Theme Styles */
+  body.dark-theme {
+    background-color: #121212;
+  }
+  
+  body.dark-theme .grocery-list-container {
+    background-color: #1e1e1e;
+  }
+  
+  body.dark-theme .table th {
+    background-color: #1f1f1f;
+    color: #fff;
+  }
+  
+  body.dark-theme .table .badge.success {
+    background-color: #2a9d8f;
+  }
+  
+  body.dark-theme .table .badge.danger {
+    background-color: #e63946;
+  }
+  
+  body.dark-theme .table .badge.secondary {
+    background-color: #aaa;
+  }
+  
+  body.dark-theme .dropdown-toggle {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  body.dark-theme .dropdown-toggle:hover {
+    background-color: #444;
+  }
+  
+  body.dark-theme .table tbody tr:hover {
+    background-color: #333;
   }
   
