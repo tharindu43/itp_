@@ -132,7 +132,7 @@ const GroceryList = () => {
         1: { cellWidth: 20 },
         2: { cellWidth: 12 },
         3: { cellWidth: 20 },
-        4: { cellWidth: 40 },
+        4: { cellWidth: 35 },
         5: { cellWidth: 35 },
         6: { cellWidth: 20 },
         7: { cellWidth: 40 }
