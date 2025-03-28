@@ -120,10 +120,27 @@ const GroceryForm = ({ edit }) => {
     }
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
+// Add this state at the component level
+const [errors, setErrors] = useState({});
+
+const handleChange = (e) => {
+  const { name, value } = e.target;
+  
+  if (name === "name") {
+    const nameRegex = /^[A-Za-z\s'-]*$/;
+    const isValid = nameRegex.test(value);
+    
+    if (isValid) {
+      setFormData((prev) => ({ ...prev, [name]: value }));
+      setErrors((prev) => ({ ...prev, name: "" }));
+    } else {
+      setErrors((prev) => ({ ...prev, name: "No numbers or special characters allowed" }));
+    }
+  } else {
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => ({ ...prev, [name]: "" }));
+  }
+};
 
   const handlePriceChange = (e) => {
     const value = e.target.value;
@@ -316,7 +333,7 @@ const GroceryForm = ({ edit }) => {
         </Form.Group>
 
         <div className="form-actions">
-          <small className="text-muted me-auto">* Required fields</small>
+          
           <Button 
             variant="secondary" 
             className="cancel-btn"

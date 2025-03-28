@@ -5,19 +5,14 @@ import { saveAs } from 'file-saver';
 import api from '../../services/api';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
-import { FiPlus, FiSearch, FiFilter, FiDownload, FiEdit, FiTrash, FiInfo } from 'react-icons/fi';
+import { FiPlus, FiSearch, FiDownload, FiEdit, FiTrash, FiInfo } from 'react-icons/fi';
 import './GroceryList.css';
 
 const GroceryList = () => {
   // State management
   const [groceries, setGroceries] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('All');
-  const [selectedStatus, setSelectedStatus] = useState('All');
-  const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [categoryDropdownOpen, setCategoryDropdownOpen] = useState(false);
-  const [statusDropdownOpen, setStatusDropdownOpen] = useState(false);
   const [exportDropdownOpen, setExportDropdownOpen] = useState(false);
 
   // Data fetching
@@ -32,19 +27,9 @@ const GroceryList = () => {
     }
   }, []);
 
-  const fetchCategories = useCallback(async () => {
-    try {
-      const response = await api.get('/groceries/categories');
-      setCategories(response.data);
-    } catch (error) {
-      console.error('Error fetching categories:', error);
-    }
-  }, []);
-
   useEffect(() => {
     fetchGroceries();
-    fetchCategories();
-  }, [fetchGroceries, fetchCategories]);
+  }, [fetchGroceries]);
 
   // Grocery item deletion
   const deleteGrocery = async (id) => {
@@ -89,17 +74,14 @@ const GroceryList = () => {
     const doc = new jsPDF();
     const pageWidth = doc.internal.pageSize.getWidth();
     
-    // Report title
     doc.setFontSize(18);
     doc.setFont('helvetica', 'bold');
     doc.text("Grocery Inventory Report", pageWidth / 2, 15, { align: 'center' });
     
-    // Report generation date
     doc.setFontSize(10);
     doc.setFont('helvetica', 'normal');
     doc.text(`Generated: ${new Date().toLocaleString()}`, 14, 22);
     
-    // Table configuration
     doc.autoTable({
       startY: 30,
       head: [['Name', 'Category', 'Qty', 'Price', 'Status', 'Purchased', 'Expiry', 'Notes']],
@@ -108,7 +90,7 @@ const GroceryList = () => {
         item.category,
         item.quantity,
         `LKR ${item.price.toFixed(2)}`,
-        { content: item.status === 'Available' ? '✓ In Stock' : '✗ Out of Stock', styles: { fontStyle: 'bold' } },
+        { content: item.status === 'Available' ? 'In Stock' : 'Out of Stock', styles: { fontStyle: 'bold' } },
         formatDate(item.purchasedDate),
         formatDate(item.expiryDate),
         item.notes || 'N/A'
@@ -128,17 +110,16 @@ const GroceryList = () => {
         cellPadding: 3
       },
       columnStyles: {
-        0: { cellWidth: 25, fontStyle: 'bold' },
+        0: { cellWidth: 20, fontStyle: 'bold' },
         1: { cellWidth: 20 },
         2: { cellWidth: 12 },
         3: { cellWidth: 20 },
-        4: { cellWidth: 35 },
-        5: { cellWidth: 35 },
+        4: { cellWidth: 30 },
+        5: { cellWidth: 30 },
         6: { cellWidth: 20 },
-        7: { cellWidth: 40 }
+        7: { cellWidth: 30 }
       },
       didDrawPage: (data) => {
-        // Page number footer
         const pageCount = doc.internal.getNumberOfPages();
         doc.setFontSize(8);
         doc.text(
@@ -152,13 +133,17 @@ const GroceryList = () => {
     doc.save(`groceries-report-${new Date().toISOString().slice(0,10)}.pdf`);
   };
 
-  // Filtering logic
+  // Filtering logic for all columns
   const filteredGroceries = groceries.filter(grocery => {
-    const matchesSearch = grocery.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      (grocery.notes && grocery.notes.toLowerCase().includes(searchTerm.toLowerCase()));
-    const matchesCategory = selectedCategory === 'All' || grocery.category === selectedCategory;
-    const matchesStatus = selectedStatus === 'All' || grocery.status === selectedStatus;
-    return matchesSearch && matchesCategory && matchesStatus;
+    const lowerSearchTerm = searchTerm.toLowerCase();
+    return (
+      grocery.name.toLowerCase().includes(lowerSearchTerm) ||
+      (grocery.notes && grocery.notes.toLowerCase().includes(lowerSearchTerm)) ||
+      grocery.category.toLowerCase().includes(lowerSearchTerm) ||
+      grocery.quantity.toString().includes(lowerSearchTerm) ||
+      grocery.price.toString().includes(lowerSearchTerm) ||
+      grocery.status.toLowerCase().includes(lowerSearchTerm)
+    );
   });
 
   // Helper functions
@@ -186,93 +171,28 @@ const GroceryList = () => {
         <div className="search-box">
           <FiSearch className="search-icon" />
           <Form.Control
-            placeholder="Search items..."
+            placeholder="Search across all items..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
 
         <div className="filter-group">
-          <Dropdown 
-            show={categoryDropdownOpen} 
-            onToggle={(isOpen) => setCategoryDropdownOpen(isOpen)}
-          >
-            <Dropdown.Toggle className="filter-toggle">
-              <FiFilter /> {selectedCategory}
-            </Dropdown.Toggle>
-            <Dropdown.Menu className="filter-menu">
-              <Dropdown.Item onClick={() => {
-                setSelectedCategory('All');
-                setCategoryDropdownOpen(false);
-              }}>
-                🌈 All Categories
-              </Dropdown.Item>
-              {categories.map(category => (
-                <Dropdown.Item 
-                  key={category} 
-                  onClick={() => {
-                    setSelectedCategory(category);
-                    setCategoryDropdownOpen(false);
-                  }}
-                >
-                  {getCategoryEmoji(category)} {category}
-                </Dropdown.Item>
-              ))}
-            </Dropdown.Menu>
-          </Dropdown>
-
-          <Dropdown 
-            show={statusDropdownOpen} 
-            onToggle={(isOpen) => setStatusDropdownOpen(isOpen)}
-          >
-            <Dropdown.Toggle className="filter-toggle">
-              <FiFilter /> {selectedStatus}
-            </Dropdown.Toggle>
-            <Dropdown.Menu className="filter-menu">
-              <Dropdown.Item onClick={() => {
-                setSelectedStatus('All');
-                setStatusDropdownOpen(false);
-              }}>
-                🌟 All Statuses
-              </Dropdown.Item>
-              <Dropdown.Item onClick={() => {
-                setSelectedStatus('Available');
-                setStatusDropdownOpen(false);
-              }}>
-                ✅ Available
-              </Dropdown.Item>
-              <Dropdown.Item onClick={() => {
-                setSelectedStatus('Out of Stock');
-                setStatusDropdownOpen(false);
-              }}>
-                ⚠️ Out of Stock
-              </Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-
-          <Dropdown 
-            show={exportDropdownOpen} 
-            onToggle={(isOpen) => setExportDropdownOpen(isOpen)}
-          >
-            <Dropdown.Toggle className="export-button">
-              <FiDownload /> Export
-            </Dropdown.Toggle>
-            <Dropdown.Menu className="filter-menu">
-              <Dropdown.Item onClick={() => {
-                generatePDFReport();
-                setExportDropdownOpen(false);
-              }}>
-                📄 PDF Report
-              </Dropdown.Item>
-              <Dropdown.Item onClick={() => {
-                generateCSVReport();
-                setExportDropdownOpen(false);
-              }}>
-                📊 CSV Report
-              </Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-        </div>
+  <Button 
+    variant="outline-secondary" 
+    onClick={generatePDFReport}
+    className="export-button me-2"
+  >
+    📄 PDF
+  </Button>
+  <Button 
+    variant="outline-secondary" 
+    onClick={generateCSVReport}
+    className="export-button"
+  >
+    📊 CSV
+  </Button>
+</div>
       </div>
 
       <div className="table-container">
@@ -336,8 +256,8 @@ const GroceryList = () => {
         {filteredGroceries.length === 0 && !loading && (
           <div className="empty-state">
             <div className="empty-illustration">🛒</div>
-            <h3>No Items Found</h3>
-            <p>Try adjusting your filters or add a new item!</p>
+            <h3>No Matching Items Found</h3>
+            <p>Try adjusting your search terms or add a new item!</p>
           </div>
         )}
       </div>
